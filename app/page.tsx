@@ -316,7 +316,11 @@ Please create:
 
       const result = await callAIAgent(campaignBrief, MANAGER_AGENT_ID)
 
-      console.log('Manager Agent Response:', JSON.stringify(result, null, 2))
+      console.log('=== FULL MANAGER RESPONSE ===')
+      console.log('Success:', result.success)
+      console.log('Response.result:', result?.response?.result)
+      console.log('Module outputs:', result?.module_outputs)
+      console.log('Raw response (first 500 chars):', result?.raw_response?.substring(0, 500))
 
       if (result.success) {
         // Manager returns: result.response.result.content_writer, result.response.result.seo_analyst, result.response.result.graphics_designer
@@ -327,10 +331,17 @@ Please create:
         const seoData: SEOAnalystResponse = managerResult?.seo_analyst || {}
         const graphicsData: GraphicsDesignerResponse = managerResult?.graphics_designer || {}
 
+        console.log('=== EXTRACTED DATA ===')
+        console.log('Content Writer data available:', !!contentData?.blog_post)
+        console.log('SEO data available:', !!seoData?.seo_score)
+        console.log('Graphics data available:', !!graphicsData?.blog_header)
+
         // Extract images from module_outputs (top-level, from Graphics Designer)
         const graphicsImages = Array.isArray(result?.module_outputs?.artifact_files)
           ? result.module_outputs.artifact_files.map((f: any) => f?.file_url).filter(Boolean)
           : []
+
+        console.log('Graphics images found:', graphicsImages.length, graphicsImages)
 
         const newCampaign: CampaignResult = {
           content: contentData,
@@ -353,6 +364,10 @@ Please create:
         }, ...prev])
 
         setCurrentScreen('results')
+      } else {
+        console.error('=== AGENT CALL FAILED ===')
+        console.error('Error:', result.error)
+        console.error('Details:', result.details)
       }
     } catch (error) {
       console.error('Campaign generation error:', error)
