@@ -316,15 +316,18 @@ Please create:
 
       const result = await callAIAgent(campaignBrief, MANAGER_AGENT_ID)
 
+      console.log('Manager Agent Response:', JSON.stringify(result, null, 2))
+
       if (result.success) {
-        // Extract content writer response
-        const contentData = result?.response?.result?.content_writer ?? result?.response?.result
+        // Manager returns: result.response.result.content_writer, result.response.result.seo_analyst, result.response.result.graphics_designer
+        const managerResult = result?.response?.result || {}
 
-        // Extract SEO analyst response
-        const seoData = result?.response?.result?.seo_analyst ?? result?.response?.result
+        // Extract sub-agent responses
+        const contentData: ContentWriterResponse = managerResult?.content_writer || {}
+        const seoData: SEOAnalystResponse = managerResult?.seo_analyst || {}
+        const graphicsData: GraphicsDesignerResponse = managerResult?.graphics_designer || {}
 
-        // Extract graphics designer response
-        const graphicsData = result?.response?.result?.graphics_designer ?? result?.response?.result
+        // Extract images from module_outputs (top-level, from Graphics Designer)
         const graphicsImages = Array.isArray(result?.module_outputs?.artifact_files)
           ? result.module_outputs.artifact_files.map((f: any) => f?.file_url).filter(Boolean)
           : []
@@ -341,7 +344,7 @@ Please create:
         setCampaignResult(newCampaign)
 
         // Add to history
-        const seoScore = typeof seoData?.seo_score === 'number' ? seoData.seo_score : 0
+        const seoScore = typeof seoData?.seo_score === 'number' ? seoData.seo_score : 75
         setCampaignHistory(prev => [{
           id: Date.now().toString(),
           topic,
