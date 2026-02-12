@@ -1,0 +1,144 @@
+{
+  "workflow_name": "Marketing Command Center",
+  "workflow_type": "manager_subagent",
+  "agents": [
+    {
+      "agent_id": "698e0b61a7eb0a142757a2e8",
+      "agent_name": "Marketing Campaign Manager",
+      "agent_type": "manager",
+      "description": "Coordinates content creation workflow, routes campaign briefs to specialized agents, and aggregates final deliverables into cohesive campaign package",
+      "provider": "OpenAI",
+      "model": "gpt-4o",
+      "temperature": 0.3,
+      "top_p": 1,
+      "response_schema_file": "response_schemas/marketing_campaign_manager_response.json",
+      "managed_agents": [
+        {
+          "agent_id": "698e0b170f1d9d4090b519bc",
+          "agent_name": "Content Writer Agent"
+        },
+        {
+          "agent_id": "698e0b2d76b1a8ab8e635751",
+          "agent_name": "SEO Analyst Agent"
+        },
+        {
+          "agent_id": "698e0b44ad038861b82558cd",
+          "agent_name": "Graphics Designer Agent"
+        }
+      ]
+    },
+    {
+      "agent_id": "698e0b170f1d9d4090b519bc",
+      "agent_name": "Content Writer Agent",
+      "agent_type": "subagent",
+      "description": "Creates engaging marketing content including blog posts, social media copy, and email content based on campaign brief and target audience",
+      "provider": "OpenAI",
+      "model": "gpt-4o",
+      "temperature": 0.8,
+      "top_p": 0.95,
+      "response_schema_file": "response_schemas/content_writer_agent_response.json"
+    },
+    {
+      "agent_id": "698e0b2d76b1a8ab8e635751",
+      "agent_name": "SEO Analyst Agent",
+      "agent_type": "subagent",
+      "description": "Analyzes content for SEO optimization, provides keyword recommendations, meta descriptions, heading structure suggestions, and readability scores",
+      "provider": "Perplexity",
+      "model": "sonar-reasoning-pro",
+      "temperature": 0.2,
+      "top_p": 1,
+      "response_schema_file": "response_schemas/seo_analyst_agent_response.json"
+    },
+    {
+      "agent_id": "698e0b44ad038861b82558cd",
+      "agent_name": "Graphics Designer Agent",
+      "agent_type": "subagent",
+      "description": "Generates marketing visuals including blog headers, social media graphics, and promotional banners matching content themes",
+      "provider": "OpenAI",
+      "model": "gpt-4o",
+      "temperature": 0.7,
+      "top_p": 0.95,
+      "response_schema_file": "response_schemas/graphics_designer_agent_response.json",
+      "image_output_enabled": true,
+      "image_output_config": {
+        "model": "gemini/gemini-3-pro-image-preview",
+        "credential_id": "lyzr_google"
+      }
+    }
+  ],
+  "workflow_visualization": {
+    "nodes": [
+      {
+        "id": "input_node",
+        "type": "Input",
+        "label": "Campaign Brief",
+        "nodeCategory": "input"
+      },
+      {
+        "id": "manager_agent",
+        "type": "Agent",
+        "label": "Marketing Campaign Manager",
+        "nodeCategory": "agent",
+        "agent_id": "698e0b61a7eb0a142757a2e8"
+      },
+      {
+        "id": "content_writer_agent",
+        "type": "Agent",
+        "label": "Content Writer Agent",
+        "nodeCategory": "agent",
+        "agent_id": "698e0b170f1d9d4090b519bc"
+      },
+      {
+        "id": "seo_analyst_agent",
+        "type": "Agent",
+        "label": "SEO Analyst Agent",
+        "nodeCategory": "agent",
+        "agent_id": "698e0b2d76b1a8ab8e635751"
+      },
+      {
+        "id": "graphics_designer_agent",
+        "type": "Agent",
+        "label": "Graphics Designer Agent",
+        "nodeCategory": "agent",
+        "agent_id": "698e0b44ad038861b82558cd"
+      },
+      {
+        "id": "output_node",
+        "type": "Output",
+        "label": "Campaign Package",
+        "nodeCategory": "end"
+      }
+    ],
+    "edges": [
+      {
+        "source": "input_node",
+        "target": "manager_agent"
+      },
+      {
+        "source": "manager_agent",
+        "target": "content_writer_agent"
+      },
+      {
+        "source": "manager_agent",
+        "target": "seo_analyst_agent"
+      },
+      {
+        "source": "manager_agent",
+        "target": "graphics_designer_agent"
+      },
+      {
+        "source": "content_writer_agent",
+        "target": "output_node"
+      },
+      {
+        "source": "seo_analyst_agent",
+        "target": "output_node"
+      },
+      {
+        "source": "graphics_designer_agent",
+        "target": "output_node"
+      }
+    ]
+  },
+  "created_at": "2026-02-12T00:00:00Z"
+}

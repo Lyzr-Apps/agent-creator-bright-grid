@@ -1,0 +1,52 @@
+{
+  "agent_name": "Content Writer Agent",
+  "agent_id": "698e0b170f1d9d4090b519bc",
+  "description": "Creates engaging marketing content including blog posts, social media copy, and email content based on campaign brief and target audience",
+  "agent_type": "json",
+  "accessor": "result",
+  "auto_generated": true,
+  "response_schema": {
+    "result": {
+      "blog_post": "string",
+      "social_media_posts": {
+        "linkedin": "string",
+        "twitter": "string",
+        "facebook": "string",
+        "instagram": "string"
+      },
+      "email_content": {
+        "subject_line": "string",
+        "preview_text": "string",
+        "body": "string"
+      },
+      "key_messages": [
+        "string"
+      ],
+      "cta_recommendations": [
+        "string"
+      ]
+    }
+  },
+  "example_response": {
+    "result": {
+      "blog_post": "Full blog post content with headings and sections",
+      "social_media_posts": {
+        "linkedin": "LinkedIn post content",
+        "twitter": "Twitter post content",
+        "facebook": "Facebook post content",
+        "instagram": "Instagram caption"
+      },
+      "email_content": {
+        "subject_line": "Email subject line",
+        "preview_text": "Email preview text",
+        "body": "Full email body content"
+      },
+      "key_messages": [
+        "sample string"
+      ],
+      "cta_recommendations": [
+        "sample string"
+      ]
+    }
+  }
+}

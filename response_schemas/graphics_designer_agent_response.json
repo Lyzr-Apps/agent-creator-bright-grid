@@ -1,0 +1,48 @@
+{
+  "agent_name": "Graphics Designer Agent",
+  "agent_id": "698e0b44ad038861b82558cd",
+  "description": "Generates marketing visuals including blog headers, social media graphics, and promotional banners matching content themes",
+  "agent_type": "json",
+  "accessor": "result",
+  "auto_generated": true,
+  "response_schema": {
+    "result": {
+      "blog_header": "string",
+      "social_graphics": {
+        "linkedin_graphic": "string",
+        "twitter_graphic": "string",
+        "facebook_graphic": "string",
+        "instagram_graphic": "string"
+      },
+      "promotional_banner": "string",
+      "design_rationale": "string",
+      "color_palette": [
+        "string"
+      ]
+    }
+  },
+  "example_response": {
+    "result": {
+      "blog_header": "Detailed description of blog header image design",
+      "social_graphics": {
+        "linkedin_graphic": "LinkedIn graphic design description",
+        "twitter_graphic": "Twitter graphic design description",
+        "facebook_graphic": "Facebook graphic design description",
+        "instagram_graphic": "Instagram graphic design description"
+      },
+      "promotional_banner": "Promotional banner design description",
+      "design_rationale": "Explanation of design choices and how they support campaign goals",
+      "color_palette": [
+        "sample string"
+      ]
+    }
+  },
+  "has_module_outputs": true,
+  "module_outputs_example": {
+    "artifact_files": [
+      {
+        "file_url": "https://example.com/image.png"
+      }
+    ]
+  }
+}

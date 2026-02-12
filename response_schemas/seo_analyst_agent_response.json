@@ -1,0 +1,72 @@
+{
+  "agent_name": "SEO Analyst Agent",
+  "agent_id": "698e0b2d76b1a8ab8e635751",
+  "description": "Analyzes content for SEO optimization, provides keyword recommendations, meta descriptions, heading structure suggestions, and readability scores",
+  "agent_type": "json",
+  "accessor": "result",
+  "auto_generated": true,
+  "response_schema": {
+    "result": {
+      "primary_keywords": [
+        "string"
+      ],
+      "secondary_keywords": [
+        "string"
+      ],
+      "meta_title": "string",
+      "meta_description": "string",
+      "heading_structure": {
+        "h1": "string",
+        "h2_suggestions": [
+          "string"
+        ],
+        "h3_suggestions": [
+          "string"
+        ]
+      },
+      "readability_score": "string",
+      "seo_score": "number",
+      "optimization_recommendations": [
+        "string"
+      ],
+      "internal_link_suggestions": [
+        "string"
+      ],
+      "content_improvements": [
+        "string"
+      ]
+    }
+  },
+  "example_response": {
+    "result": {
+      "primary_keywords": [
+        "sample string"
+      ],
+      "secondary_keywords": [
+        "sample string"
+      ],
+      "meta_title": "Optimized meta title",
+      "meta_description": "Optimized meta description",
+      "heading_structure": {
+        "h1": "Main H1 heading suggestion",
+        "h2_suggestions": [
+          "sample string"
+        ],
+        "h3_suggestions": [
+          "sample string"
+        ]
+      },
+      "readability_score": "Readability assessment",
+      "seo_score": 0,
+      "optimization_recommendations": [
+        "sample string"
+      ],
+      "internal_link_suggestions": [
+        "sample string"
+      ],
+      "content_improvements": [
+        "sample string"
+      ]
+    }
+  }
+}

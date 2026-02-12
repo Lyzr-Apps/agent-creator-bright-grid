@@ -1,0 +1,74 @@
+{
+  "agent_name": "Marketing Campaign Manager",
+  "agent_id": "698e0b61a7eb0a142757a2e8",
+  "description": "Coordinates content creation workflow, routes campaign briefs to specialized agents, and aggregates final deliverables into cohesive campaign package",
+  "agent_type": "json",
+  "accessor": "result",
+  "auto_generated": true,
+  "response_schema": {
+    "result": {
+      "campaign_summary": "string",
+      "content_deliverables": {
+        "blog_post": "string",
+        "social_media": "string",
+        "email_campaign": "string"
+      },
+      "seo_optimization": {
+        "primary_keywords": [
+          "string"
+        ],
+        "meta_data": "string",
+        "seo_score": "number"
+      },
+      "visual_assets": {
+        "blog_header": "string",
+        "social_graphics": "string",
+        "promotional_materials": "string"
+      },
+      "campaign_readiness": "string",
+      "deployment_recommendations": [
+        "string"
+      ],
+      "next_steps": [
+        "string"
+      ]
+    }
+  },
+  "example_response": {
+    "result": {
+      "campaign_summary": "Executive summary of the complete campaign",
+      "content_deliverables": {
+        "blog_post": "Blog post content summary",
+        "social_media": "Social media posts summary",
+        "email_campaign": "Email content summary"
+      },
+      "seo_optimization": {
+        "primary_keywords": [
+          "sample string"
+        ],
+        "meta_data": "Meta title and description summary",
+        "seo_score": 0
+      },
+      "visual_assets": {
+        "blog_header": "Blog header description",
+        "social_graphics": "Social graphics summary",
+        "promotional_materials": "Banner and promotional assets summary"
+      },
+      "campaign_readiness": "Campaign readiness status",
+      "deployment_recommendations": [
+        "sample string"
+      ],
+      "next_steps": [
+        "sample string"
+      ]
+    }
+  },
+  "has_module_outputs": true,
+  "module_outputs_example": {
+    "artifact_files": [
+      {
+        "file_url": "https://example.com/image.png"
+      }
+    ]
+  }
+}
